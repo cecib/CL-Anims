@@ -1,7 +1,9 @@
+import os
 from PIL import Image
 
 
-ASCII_CHARS = "@@##%%\"|()[]{}*-=-<>!~^=-:`'._ -:. .,  "
+IMAGE_DIR = "./images"
+ASCII_CHARS = "@@##%%\"|()[]{}*=-=-<>!~^=;;::-`'._ -:. .,   "
 
 
 def resize_image(image, new_width=100):
@@ -20,9 +22,13 @@ def pixels_to_ascii(image):
 
 
 def main():
-    path = input('Enter a path to an image file: ')
-    if not path:
-        path = './katara.png'
+    # handle prompt
+    filenames = [f for f in os.listdir(IMAGE_DIR) if os.path.isfile(os.path.join(IMAGE_DIR, f))]
+    message = ''
+    for idx, name in enumerate(filenames):
+         message += f"\n[{idx}] {name}"
+    filename = input(f'Choose an image file: {message}\n')
+    path = f'./images/{filenames[int(filename)]}'
     try:
         image = Image.open(path)
     except Exception as e:
@@ -44,3 +50,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
