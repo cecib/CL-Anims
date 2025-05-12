@@ -1,8 +1,7 @@
 import os
 from PIL import Image
 
-
-IMAGE_DIR = "./images"
+IMAGE_DIR = './images'
 ASCII_CHARS = "@@##%%\"|()[]{}*=-=-<>!~^=;;::-`'._ -:. .,   "
 
 
@@ -23,12 +22,15 @@ def pixels_to_ascii(image):
 
 def main():
     # handle prompt
-    filenames = [f for f in os.listdir(IMAGE_DIR) if os.path.isfile(os.path.join(IMAGE_DIR, f))]
+    filenames = [f for f in os.listdir(
+        IMAGE_DIR) if os.path.isfile(os.path.join(IMAGE_DIR, f))]
     message = ''
     for idx, name in enumerate(filenames):
-         message += f"\n[{idx}] {name}"
+        message += f"\n[{idx}] {name}"
     filename = input(f'Choose an image file: {message}\n')
     path = f'./images/{filenames[int(filename)]}'
+
+    # open image
     try:
         image = Image.open(path)
     except Exception as e:
@@ -50,4 +52,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
