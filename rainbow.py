@@ -13,10 +13,11 @@ block_end = "m\033[97m  \033[0m"
 start = time.time()
 
 # parameters
-width = 30
-height = 30
-frame_num = 600
+width = 25
+height = 25
+frame_num = 60000
 frame_hold = 0.1
+speed = 0.12
 
 
 def rgb_to_ansi256(rgb):
@@ -28,12 +29,14 @@ def rgb_to_ansi256(rgb):
 def animate(rows):
     """Print rows of rainbow colors using ANSI"""
     for row in range(rows):
-        depth = row/rows
-        rgb = colorsys.hsv_to_rgb(depth+10*(time.time()-start), 0.9, 0.9)
+        # TODO fix hue jump
+        depth = row/rows + ((time.time()-start)*speed % height)
+        rgb = colorsys.hsv_to_rgb(depth % 1, 0.9, 0.9)
         color_code = int(rgb_to_ansi256([x*255 for x in rgb]))
         print("".join([block_begin, str(color_code), block_end]) * width)
 
-    time.sleep(frame_hold)
+    if frame_hold:
+        time.sleep(frame_hold)
 
 
 for frame in range(0, frame_num):
