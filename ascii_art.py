@@ -2,7 +2,8 @@ import os
 from PIL import Image
 
 IMAGE_DIR = './images'
-ASCII_CHARS = "@@##%%\"|()[]{}*=-=-<>!~^=;;::-`'._ -:. .,   "
+black_box = chr(9608)
+ASCII_CHARS = '   . ,. .:- _.\'` - ::;;=^~!><-=-=*ucoie}{T][C)(|ZX"VRFWNMH%##@@'
 
 
 def resize_image(image, new_width=100):
