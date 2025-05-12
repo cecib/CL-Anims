@@ -2,7 +2,6 @@ import os
 from PIL import Image
 
 IMAGE_DIR = './images'
-black_box = chr(9608)
 ASCII_CHARS = '   . ,. .:- _.\'` - ::;;=^~!><-=-=*ucoie}{T][C)(|ZX"VRFWNMH%##@@'
 
 
@@ -28,8 +27,8 @@ def main():
     message = ''
     for idx, name in enumerate(filenames):
         message += f"\n[{idx}] {name}"
-    filename = input(f'Choose an image file: {message}\n')
-    path = f'./images/{filenames[int(filename)]}'
+    file_idx = input(f'Choose an image file: {message}\n')
+    path = f'./images/{filenames[int(file_idx)]}'
 
     # open image
     try:
